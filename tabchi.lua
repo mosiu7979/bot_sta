@@ -271,6 +271,16 @@ Saved links : ]] .. links .. '\n Cracked Version By ThinkTeam'
         return "Added Message Turned Off"
       end
 end
+  if msg.text:match("^[!/#]addmembers$") and is_sudo(msg) and chat_type(msg.chat_id_) ~= "private" then
+    tdcli_function({
+      ID = "SearchContacts",
+      query_ = nil,
+      limit_ = 999999999
+    }, add_members, {
+      chat_id = msg.chat_id_
+    })
+    return
+  end
 	elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then
     tdcli_function ({
       ID="GetChats",
