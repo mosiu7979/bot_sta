@@ -104,8 +104,8 @@ function tdcli_update_callback(data)
 			local input = msg.content_.text_
 			local chat_id = msg.chat_id_
 			local user_id = msg.sender_user_id_
-		if input:match('[!/#]echo') and is_sudo(msg) then
-			 local text = input:gsub('[!/#]echo', '')
+		if msg.text:match('[!/#]echo') and is_sudo(msg) then
+			 local text = msg.text:gsub('[!/#]echo', '')
 		        tdcli.sendMessage(msg.chat_id_, msg.id_, 0, text, 0, "md")
 		end
 		if msg.text:match("^[!/#]fwd all$") and msg.reply_to_message_id_ and is_sudo(msg) then
@@ -212,8 +212,8 @@ function tdcli_update_callback(data)
       end
     end
   end
-  if input:match('^[!/#]setaddedmsg') and is_sudo(msg) then
-	text = input:gsub('[!/#]setaddedmsg','')
+  if msg.text:match('^[!/#]setaddedmsg') and is_sudo(msg) then
+	text = msg.text:gsub('[!/#]setaddedmsg','')
       redis:set("tabchi:" .. tabchi_id .. ":addedmsgtext", text)
       return [[
 New Added Message Set!
@@ -221,7 +221,7 @@ Message :
 ]] .. text
 end
 if msg.text:match("^[!/#]markread") and is_sudo(msg) then
-local mode = input:gsub('[!/#]markread','')
+local mode = msg.text:gsub('[!/#]markread','')
       if mode == "on" then
         redis:set("tabchi:" .. tabchi_id .. ":markread", true)
         return "Markread Turned On"
@@ -231,7 +231,7 @@ local mode = input:gsub('[!/#]markread','')
       end
     end
   end
-  if input:match('[!/#]panel') and is_sudo(msg) then
+  if msg.text:match('[!/#]panel') and is_sudo(msg) then
   local gps = redis:scard("tabchi:" .. tabchi_id .. ":groups")
       local sgps = redis:scard("tabchi:" .. tabchi_id .. ":channels")
       local pvs = redis:scard("tabchi:" .. tabchi_id .. ":pvis")
@@ -250,19 +250,19 @@ Saved links : ]] .. links .. '\n Cracked Version By ThinkTeam'
           tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, "md")
 		 end
     if msg.text:match("^[!/#]addsudo") and is_full_sudo(msg) then
-	local id = input:gsub('[!/#]addsudo','')
+	local id = msg.text:gsub('[!/#]addsudo','')
       local text = id .. " Added to *Sudo Users*"
       redis:sadd("tabchi:" .. tabchi_id .. ":sudoers", tonumber(id))
       return text
   end
     if msg.text:match("^[!/#]remsudo") and is_full_sudo(msg) then
-      local id = input:gsub('[!/#]remsudo','')
+      local id = msg.text:gsub('[!/#]remsudo','')
       local text = id .. " Removed From *Sudo Users*"
       redis:srem("tabchi:" .. tabchi_id .. ":sudoers", tonumber(id))
       return text
     end
     if msg.text:match("^[!/#]addedmsg") and is_sudo(msg) then
-	local id = input:gsub('[!/#]addedmsg','')
+	local id = msg.text:gsub('[!/#]addedmsg','')
       if id == "on" then
         redis:set("tabchi:" .. tabchi_id .. ":addedmsg", true)
         return "Added Message Turned On"
