@@ -228,8 +228,8 @@ function tdcli_update_callback(data)
   end
   local msg = data.message_
   do
+local msg = data.message_
     local matches = {
-	  local msg = data.message_
       msg.text:match("^[!/#](setaddedmsg) (.*)")
     }
     if msg.text:match("^[!/#]setaddedmsg") and is_sudo(msg) and #matches == 2 then
