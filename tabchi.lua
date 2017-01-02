@@ -229,7 +229,7 @@ function tdcli_update_callback(data)
   local msg = data.message_
   do
 local msg = data.message_
-    local matches = {
+--[[    local matches = {
       msg.text:match("^[!/#](setaddedmsg) (.*)")
     }
     if msg.text:match("^[!/#]setaddedmsg") and is_sudo(msg) and #matches == 2 then
@@ -239,7 +239,7 @@ New Added Message Set!
 Message :
 ]] .. matches[2]
     end
-  end
+  end]]
   do
     local cmd = {
       msg.text:match("[$](.*)")
