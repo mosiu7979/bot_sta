@@ -227,19 +227,7 @@ function tdcli_update_callback(data)
     end
   end
   local msg = data.message_
-  do
-local msg = data.message_
---[[    local matches = {
-      msg.text:match("^[!/#](setaddedmsg) (.*)")
-    }
-    if msg.text:match("^[!/#]setaddedmsg") and is_sudo(msg) and #matches == 2 then
-      redis:set("tabchi:" .. tabchi_id .. ":addedmsgtext", matches[2])
-      return [[
-New Added Message Set!
-Message :
-]] .. matches[2]
-    end
-  end]]
+
   do
     local cmd = {
       msg.text:match("[$](.*)")
