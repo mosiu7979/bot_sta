@@ -104,6 +104,7 @@ function tdcli_update_callback(data)
 			local chat_id = msg.chat_id_
 			local user_id = msg.sender_user_id_
 			  msg.text = msg.content_.text_
+			  local msg.text = msg.content_.text_
 		if msg.content_.text_:match('[!/#]echo') and is_sudo(msg) then
 			 local text = msg.content_.text_:gsub('[!/#]echo', '')
 		        tdcli.sendMessage(msg.chat_id_, msg.id_, 0, text, 0, "md")
@@ -226,8 +227,18 @@ function tdcli_update_callback(data)
       end
     end
   end
-  local msg = data.message_
-
+  do
+    local matches = {
+      msg.text:match("^[!/#](setaddedmsg) (.*)")
+    }
+    if msg.text:match("^[!/#]setaddedmsg") and is_sudo(msg) and #matches == 2 then
+      redis:set("tabchi:" .. tabchi_id .. ":addedmsgtext", matches[2])
+      return [[
+New Added Message Set!
+Message :
+]] .. matches[2]
+    end
+  end
   do
     local cmd = {
       msg.text:match("[$](.*)")
