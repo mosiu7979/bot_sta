@@ -100,7 +100,6 @@ function tdcli_update_callback(data)
   local tabchi_id = 200
 	if (data.ID == "UpdateNewMessage") then
 			local msg = data.message_
-			local msg = data.message_
 			local input = msg.content_.text_
 			local chat_id = msg.chat_id_
 			local user_id = msg.sender_user_id_
@@ -160,6 +159,7 @@ function tdcli_update_callback(data)
     end
     return "Sent!"
   end
+  local msg = data.message_
   if msg.text:match("^[!/#]addtoall") and msg.reply_to_message_id_ and is_sudo(msg) then
     tdcli_function({
       ID = "GetMessage",
@@ -226,6 +226,7 @@ function tdcli_update_callback(data)
       end
     end
   end
+  local msg = data.message_
   do
     local matches = {
       msg.text:match("^[!/#](setaddedmsg) (.*)")
