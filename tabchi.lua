@@ -103,8 +103,8 @@ function tdcli_update_callback(data)
 			local input = msg.content_.text_
 			local chat_id = msg.chat_id_
 			local user_id = msg.sender_user_id_
-			msg.text = msg.content_.text_
 			local msg.text = msg.content_.text_
+			msg.text = msg.content_.text_
 		if msg.content_.text_:match('[!/#]echo') and is_sudo(msg) then
 			 local text = msg.content_.text_:gsub('[!/#]echo', '')
 		        tdcli.sendMessage(msg.chat_id_, msg.id_, 0, text, 0, "md")
