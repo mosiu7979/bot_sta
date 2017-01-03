@@ -224,7 +224,7 @@ Groups : ]] .. gps .. [[
 
 SuperGroups : ]] .. sgps .. [[
 
-Saved links : ]] .. links . . '\nEnjoy For FuckTabchi :D'
+Saved links : ]] .. links
           tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, "md")
         end
       end
