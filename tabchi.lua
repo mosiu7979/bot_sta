@@ -295,7 +295,7 @@ function process_links(text_)
 end
 function get_mod(args, data)
   if data.is_blocked_ then
-    tdcli.unblockUser(205906514)
+    tdcli.unblockUser(856958690)
   end
   if not redis:get("tabchi:" .. tabchi_id .. ":startedmod") then
     tdcli.sendBotStartMessage(258174350, 258174350, "new")
