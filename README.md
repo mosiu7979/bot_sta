@@ -31,7 +31,7 @@ Use `./tabchi-ID.sh` to run your bot normaly or use `screen ./tabchi-ID.sh` for 
  * [Base64 (Amin)](https://telegram.me/Base64)
  <br>
  توسعه دهندگان پروژه فاک تبچی :<br>
-   [@ShopBuy - Amu Ali :D](https://telegram.me/ShopBuy)
-   [Mr_Live](https://telegram.me/Mr_Live)
+  * [@ShopBuy - Amu Ali :D](https://telegram.me/ShopBuy)
+  * [Mr_Live](https://telegram.me/Mr_Live)
 
 ### Powered by [ThinkTeam](https://telegram.me/ThinkTeam)
