@@ -1,36 +1,37 @@
-# Tabchi
+# FuckTabchi Bot :D
 
 TG-CLI based broadcasting bot!
-
-## Install
+<br>
+##نسخه ی ادیت شده که دیگر تبلیغات آی تیم در روبات شما ارسال نمیشود :D
+##امکانات بیشتر بزودی :/
+## Install - نصب
 ```bash
 chmod 777 install.sh
 ./install.sh
 ```
-## Create a bot!
+## Create a bot! - ساخت روبات
 ```
 root@iTeam:~# python3 creator.py
-Enter Tabchi ID (1,2,3,4,5,...) : 1
-Enter Full Sudo ID : 122774063
+Enter Tabchi ID (1,2,3,4,5,...) : یه عدد وارد کنید
+Enter Full Sudo ID : ایدی عددی
 Done!
 New Tabchi Created...
 ID : 1
 Full Sudo : 122774063
 Run : ./tabchi-1.sh
 ```
-Enter id of tabchi in "ID" part (it can be anything but should be unique)
-
-Enter your telegram Id in "Full Sudo ID" part
-
-Enjoy Your New Bot!
-## Run
+## Run - اجرا
 Use `./tabchi-ID.sh` to run your bot normaly or use `screen ./tabchi-ID.sh` for auto launch mode (put tabchi-id in ID part)
 
-## Help and more...
-Send `/help` to [@TabChiRobot](https://telegram.me/TabChiRobot) in telegram
-## Developers
-
+## Help and more... - راهنمایی
+@ShopBuy
+## Developers - توسعه دهندگان
+توسعه دهندگان تبچی :<br>
  * [BugFather (Amir_h)](https://telegram.me/BugFather)
  * [Base64 (Amin)](https://telegram.me/Base64)
+ <br>
+ توسعه دهندگان پروژه فاک تبچی :<br>
+   [@ShopBuy - Amu Ali :D](https://telegram.me/ShopBuy)
+   [Mr_Live](https://telegram.me/Mr_Live)
 
-### Powered by [iTeam](https://telegram.me/iTeam_IR)
+### Powered by [ThinkTeam](https://telegram.me/ThinkTeam)
